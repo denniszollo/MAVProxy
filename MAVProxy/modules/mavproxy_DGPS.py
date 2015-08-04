@@ -26,7 +26,7 @@ class DGPSModule(mp_module.MPModule):
             if e.errno in [ errno.EAGAIN, errno.EWOULDBLOCK ]:
                 return
             raise
-        if len(data) > 110:
+        if len(data) > 112:
             print("DGPS data too large: %u bytes" % len(data))
             return
         try:
@@ -35,7 +35,7 @@ class DGPSModule(mp_module.MPModule):
                 self.target_system,                                  
                 self.target_component,
                 len(data), 
-                bytearray(data.ljust(110, '\0')))
+                bytearray(data.ljust(112, '\0')))
 
         except Exception,e:
             print "DGPS Failed:", e
